@@ -1,7 +1,7 @@
-## namegen
+## naamkaran: generative model for names
 
 Using FL Voter Registration Data, we build a generative model for names.
 
 ### Authors
 
-Suriyan Laohaprapanon and Gaurav Sood
+Rajashekar Chintalapati and Gaurav Sood
