@@ -56,7 +56,7 @@ class Tox(TestCommand):
 setup(
     name="naamkaran",
     version="0.0.1",
-    description=("Generate human names."),
+    description=("Generative model for names."),
     long_description=long_description,
     # The project's main homepage.
     url="https://github.com/appeler/naamkaran",
@@ -99,8 +99,8 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=["torch==2.0.1", "tqdm==4.65.0",
-                      "scikit-learn==1.3.0"],
+    install_requires=["torch==2.0.1", "pandas==2.0.3", 
+                      "joblib==1.3.2", "scikit-learn==1.3.0",],
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example:
@@ -111,7 +111,7 @@ setup(
     # have to be included in MANIFEST.in as well.
     package_data={
         "naamkaran": [
-            "models/*.ipynb",
+            "notebooks/*.ipynb",
             "models/*.pt",
             "models/*.joblib",
         ],

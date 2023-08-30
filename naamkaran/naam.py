@@ -8,10 +8,15 @@ import torch
 
 from .model import NameGenerator
 
+
 class Naamkaran:
+    """
+    Generates names for the given start_letter, end_letter
+    """
 
     @staticmethod
-    def generate(cls, start_letter:str, end_letter:str, how_many:int, max_length:int, gender:str, temperature:float, model_fn:str, vocab_fn:str) -> pd.DataFrame:
+    def generate(start_letter: str, end_letter: str, how_many: int, max_length: int, gender: str, 
+                 temperature: float, model_fn: str, vocab_fn: str) -> pd.DataFrame:
         """
         Generates names for the given dataframe.
         """
@@ -79,7 +84,3 @@ class Naamkaran:
                 how_many -= 1
 
         return generated_names
-
-
-
-
