@@ -70,6 +70,11 @@ The general API for naamkaran is as follows:
     'Arine', 'Anice', 'Andre', 'Anale', 'Allie']
 
 
+Demo
+----
+You can try out the demo here - `Naamkaran Demo <https://huggingface.co/spaces/sixtyfold/generate_names>`__
+
+
 Data
 ----
 
