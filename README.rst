@@ -5,7 +5,7 @@ naamkaran: Generative model for names
     :target: https://github.com/appeler/naamkaran/actions?query=workflow%3Atest
 .. image:: https://img.shields.io/pypi/v/naamkaran.svg
     :target: https://pypi.python.org/pypi/naamkaran
-.. image:: https://pepy.tech/badge/naamkaran
+.. image:: https://static.pepy.tech/badge/naamkaran
     :target: https://pepy.tech/project/naamkaran
 
 Naamkaran is a generative model for names. It is a simple character-level RNN that predicts 
