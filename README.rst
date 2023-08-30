@@ -49,7 +49,7 @@ The general API for naamkaran is as follows:
     'Arver', 'Agnee', 'Anous', 'Areyd', 'Adria']
 
 
-    # generate 10 names starting with 'A' and ending with 'n'
+    # generate 10 names starting with 'B' and ending with 'n'
     generate_names('B', end_letter='n', how_many=10)
     ['Brian', 'Beran', 'Burin', 'Bahan', 'Balin',
     'Bounn', 'Baran', 'Balan', 'Belin', 'Brion']
@@ -58,12 +58,12 @@ The general API for naamkaran is as follows:
     generate_names('B', end_letter='n', how_many=5, max_length=4)
     ['Bern', 'Bren', 'Bran', 'Bonn', 'Brun']
 
-    # generate 10 names starting with 'A' and ending with 'n' with a maximum length of 6
+    # generate 10 names starting with 'D' and ending with 'd' with a maximum length of 6
     # and a temperature of 0.5
     generate_names('D', end_letter='d', how_many=5, max_length=6, temperature=0.5)
     ['Derayd', 'Davind', 'Deland', 'Denild', 'David']
 
-    # generate 10 female names starting with 'A' and ending with 'n' with a maximum length of 5
+    # generate 10 female names starting with 'A' and ending with 'e' with a maximum length of 5
     # and a temperature of 0.5
     generate_names('A', end_letter='e', how_many=10, max_length=5, gender="F", temperature=0.5)
     ['Annhe', 'Annie', 'Altre', 'Anne', 'Ashle',
