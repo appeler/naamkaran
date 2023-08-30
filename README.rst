@@ -1,4 +1,4 @@
-naamkaran: Generative model for names
+naamkaran: generative model for names
 -------------------------------------
 
 .. image:: https://github.com/appeler/naamkaran/actions/workflows/python-package.yml/badge.svg
@@ -8,9 +8,12 @@ naamkaran: Generative model for names
 .. image:: https://static.pepy.tech/badge/naamkaran
     :target: https://pepy.tech/project/naamkaran
 
-Naamkaran is a generative model for names. It is a character-level RNN that predicts 
-the next character given the previous characters. The model is trained on a list of names from 
-FL Voter Registration Data and can be used to generate new names.
+
+Naamkaran is a generative model for names. It is based on a character-level RNN trained on names from the Florida Voter Registration Data. 
+
+Gradio App.
+------------
+`Naamkaran on HF <https://huggingface.co/spaces/sixtyfold/generate_names>`__
 
 Installation
 ------------
@@ -70,16 +73,11 @@ The general API for naamkaran is as follows:
     'Arine', 'Anice', 'Andre', 'Anale', 'Allie']
 
 
-Demo
-----
-You can try out the demo here - `Naamkaran Demo <https://huggingface.co/spaces/sixtyfold/generate_names>`__
-
-
 Data
 ----
 
-The data used to train the model is from the Florida Voter Registration Data from early 2022.
-The data is available here - `Florida voter registration database <http://dx.doi.org/10.7910/DVN/UBIG3F>`__
+The model is trained on names from the Florida Voter Registration Data from early 2022.
+The data are available on the `Harvard Dataverse <http://dx.doi.org/10.7910/DVN/UBIG3F>`__
 
 
 Authors
