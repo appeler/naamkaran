@@ -34,8 +34,7 @@ class Naamkaran:
         n_layers = 1
         gender_size = 2
 
-        vocab_size = n_letters + 1 + 1 # vocab + oob + 1
-        torch.manual_seed(42)
+        vocab_size = n_letters + 1 + 1  # vocab + oob + 1
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
         # Initialize the model
