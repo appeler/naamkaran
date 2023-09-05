@@ -37,7 +37,7 @@ The general API for naamkaran is as follows:
     # generate_names is the function that generates names
 
     positional arguments:
-      start_letter  The letter to start the name with
+      start_letter  The letter to start the name with (default: "a")
 
     optional arguments:
         end_letter  The letter to end the name with (default: None)
