@@ -6,14 +6,10 @@ name: Python package
 on:
   pull_request:
     branches: [ "main" ]
-    paths-ignore:
-      - 'flask/**'
-      - 'flask/test_api.py'
+
   push:
     branches: [ "main" ]
-    paths-ignore:
-      - 'flask/**'
-      - 'flask/test_api.py'
+ 
 
 jobs:
   build:
@@ -43,4 +39,5 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       run: |
-        pytest
+        pytest --ignore=flask/
+
