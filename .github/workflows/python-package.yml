@@ -8,10 +8,12 @@ on:
     branches: [ "main" ]
     paths-ignore:
       - 'flask/**'
+      - '/home/runner/work/naamkaran/naamkaran/flask/test_api.py'
   push:
     branches: [ "main" ]
     paths-ignore:
       - 'flask/**'
+      - '/home/runner/work/naamkaran/naamkaran/flask/test_api.py'
 
 jobs:
   build:
