@@ -4,12 +4,14 @@
 name: Python package
 
 on:
+  pull_request:
+    branches: [ "main" ]
+    paths-ignore:
+      - 'flask/**'
   push:
     branches: [ "main" ]
     paths-ignore:
       - 'flask/**'
-  pull_request:
-    branches: [ "main" ]
 
 jobs:
   build:
