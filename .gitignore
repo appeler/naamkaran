@@ -16,3 +16,4 @@ dev/
 docs/build
 docs/source/_build
 .DS_Store
+Dockerfile
