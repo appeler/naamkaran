@@ -100,7 +100,7 @@ setup(
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=["torch==2.2.0", "pandas==2.0.3", 
-                      "joblib==1.3.2", "scikit-learn==1.3.0",],
+                      "joblib==1.3.2", "scikit-learn==1.5.1",],
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example:
