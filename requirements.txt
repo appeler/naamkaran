@@ -3,4 +3,4 @@ numpy==1.24.3
 pandas==2.0.3
 pytest==7.4.0
 scikit-learn==1.5.1
-torch==2.2.0
+torch==2.6.0
