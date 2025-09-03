@@ -39,5 +39,7 @@ class NameGenerator(nn.Module):
         """
         Initialize the hidden state of the LSTM.
         """
-        return (torch.zeros(self.n_layers, batch_size, self.hidden_size, device=device),
-                torch.zeros(self.n_layers, batch_size, self.hidden_size, device=device))
+        return (
+            torch.zeros(self.n_layers, batch_size, self.hidden_size, device=device),
+            torch.zeros(self.n_layers, batch_size, self.hidden_size, device=device),
+        )

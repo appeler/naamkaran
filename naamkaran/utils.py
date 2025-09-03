@@ -1,10 +1,12 @@
 """
 To process arguments from the command line.
 """
+
 import argparse
+from typing import List
 
 
-def get_args(argv, description: str, epilog: str) -> argparse.Namespace:
+def get_args(argv: List[str], description: str, epilog: str) -> argparse.Namespace:
     """
     Returns arguments from the command line.
     """

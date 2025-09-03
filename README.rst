@@ -9,7 +9,7 @@ naamkaran: generative model for names
     :target: https://pepy.tech/project/naamkaran
 
 
-Naamkaran is a generative model for names. It is based on a character-level RNN trained on names from the Florida Voter Registration Data. 
+Naamkaran is a generative model for names. It is based on a character-level RNN trained on names from the Florida Voter Registration Data.
 
 Gradio App.
 ------------
@@ -24,12 +24,24 @@ Naamkaran can be installed from PyPI using pip:
 
     pip install naamkaran
 
+For development with all tools:
+
+.. code-block:: bash
+
+    pip install -e ".[dev,test]"
+
+For web applications (Gradio/Flask):
+
+.. code-block:: bash
+
+    pip install "naamkaran[web]"
+
 General API
 -----------
 
 The general API for naamkaran is as follows:
 
-:: 
+::
 
     # naamkaran is the package name
     from naamkaran.generate import generate_names
@@ -48,7 +60,7 @@ The general API for naamkaran is as follows:
 
     # generate 10 names starting with 'A'
     generate_names('A', how_many=10)
-    ['Allis', 'Alber', 'Aderi', 'Albri', 'Alawa', 
+    ['Allis', 'Alber', 'Aderi', 'Albri', 'Alawa',
     'Arver', 'Agnee', 'Anous', 'Areyd', 'Adria']
 
 
