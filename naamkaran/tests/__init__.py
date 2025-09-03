@@ -1,6 +1,7 @@
 """
 This module contains the tests for the naamkaran package.
 """
+
 import sys
 from contextlib import contextmanager
 from io import StringIO

@@ -1,0 +1,93 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "naamkaran"
+version = "0.1.0"
+description = "Generative model for names."
+readme = "README.rst"
+license = {text = "MIT"}
+authors = [
+    {name = "Rajashekar Chintalapati", email = "rajshekar.ch@gmail.com"},
+    {name = "Gaurav Sood", email = "gsood07@gmail.com"},
+]
+keywords = ["generate", "names", "machine-learning", "nlp"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Utilities",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "torch>=2.0.0,<3.0.0",
+    "pandas>=2.0.0",
+    "joblib>=1.3.0",
+    "scikit-learn>=1.3.0",
+    "importlib-resources>=1.3.0;python_version<'3.9'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov",
+    "black",
+    "isort",
+    "flake8",
+    "mypy",
+    "pre-commit",
+]
+test = [
+    "pytest>=7.0.0",
+    "pytest-cov",
+]
+web = [
+    "gradio>=3.0.0",
+    "flask>=2.0.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/appeler/naamkaran"
+Documentation = "https://naamkaran.readthedocs.io/"
+Repository = "https://github.com/appeler/naamkaran"
+Issues = "https://github.com/appeler/naamkaran/issues"
+
+[project.scripts]
+generate_names = "naamkaran.generate:main"
+
+[tool.setuptools.packages.find]
+exclude = ["data", "docs", "tests", "scripts", "venv"]
+
+[tool.setuptools.package-data]
+naamkaran = ["models/*.pt", "models/*.joblib"]
+
+[tool.black]
+line-length = 88
+target-version = ['py39']
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["naamkaran/tests"]
+python_files = ["test_*.py"]
+addopts = "-v --tb=short"

@@ -1,8 +1,9 @@
 """A setuptools based setup module."""
-from os import path
-from codecs import open
 
-from setuptools import setup, find_packages
+from codecs import open
+from os import path
+
+from setuptools import find_packages, setup
 from setuptools.command.develop import develop
 from setuptools.command.install import install
 from setuptools.command.test import test as TestCommand
@@ -44,8 +45,9 @@ class Tox(TestCommand):
 
     def run_tests(self):
         # import here, cause outside the eggs aren't loaded
-        import tox
         import shlex
+
+        import tox
 
         args = self.tox_args
         if args:
@@ -99,13 +101,20 @@ setup(
     # your project is installed. For an analysis of "install_requires" vs pip's
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
-    install_requires=["torch==2.6.0", "pandas==2.0.3", 
-                      "joblib==1.3.2", "scikit-learn==1.5.1",],
+    install_requires=[
+        "torch==2.6.0",
+        "pandas==2.0.3",
+        "joblib==1.3.2",
+        "scikit-learn==1.5.1",
+    ],
     # List additional groups of dependencies here (e.g. development
     # dependencies). You can install these using the following syntax,
     # for example:
     # $ pip install -e .[dev,test]
-    extras_require={"dev": ["check-manifest"], "test": ["coverage"], },
+    extras_require={
+        "dev": ["check-manifest"],
+        "test": ["coverage"],
+    },
     # If there are data files included in your packages that need to be
     # installed, specify them here.  If using Python 2.6 or less, then these
     # have to be included in MANIFEST.in as well.
@@ -117,9 +126,7 @@ setup(
         ],
     },
     entry_points={
-        "console_scripts": [
-            "generate_names=naamkaran.generate:main"
-        ],
+        "console_scripts": ["generate_names=naamkaran.generate:main"],
     },
     cmdclass={
         "develop": PostDevelopCommand,
