@@ -56,7 +56,7 @@ web = [
 
 [project.urls]
 Homepage = "https://github.com/appeler/naamkaran"
-Documentation = "https://naamkaran.readthedocs.io/"
+Documentation = "https://appeler.github.io/naamkaran/"
 Repository = "https://github.com/appeler/naamkaran"
 Issues = "https://github.com/appeler/naamkaran/issues"
 

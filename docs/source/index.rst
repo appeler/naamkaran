@@ -1,5 +1,5 @@
 naamkaran: Generative Model for Names
-====================================
+=====================================
 
 .. image:: https://github.com/appeler/naamkaran/actions/workflows/python-package.yml/badge.svg
     :target: https://github.com/appeler/naamkaran/actions?query=workflow%3Apython-package
