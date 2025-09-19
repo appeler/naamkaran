@@ -33,8 +33,8 @@ class Naamkaran:
         """
         Generates names for the given dataframe.
         """
-        MODEL = files(__name__).joinpath(model_fn)
-        VOCAB = files(__name__).joinpath(vocab_fn)
+        MODEL = files("naamkaran").joinpath(model_fn)
+        VOCAB = files("naamkaran").joinpath(vocab_fn)
 
         vectorizer = joblib.load(VOCAB)
         vocab = list(vectorizer.get_feature_names_out())
