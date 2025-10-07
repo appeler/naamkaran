@@ -2,7 +2,7 @@ naamkaran: generative model for names
 -------------------------------------
 
 .. image:: https://github.com/appeler/naamkaran/actions/workflows/ci.yml/badge.svg
-    :target: https://github.com/appeler/naamkaran/actions?query=workflow%3Apython-package
+    :target: https://github.com/appeler/naamkaran/actions/workflows/ci.yml
 .. image:: https://img.shields.io/pypi/v/naamkaran.svg
     :target: https://pypi.python.org/pypi/naamkaran
 .. image:: https://static.pepy.tech/badge/naamkaran
