@@ -52,8 +52,6 @@ dev = [
     "pytest-xdist>=3.0",
     "ruff>=0.7.0",
     "mypy>=1.0",
-    "black>=24.0",
-    "isort>=5.0",
     "pre-commit>=3.0",
 ]
 test = [
@@ -121,13 +119,6 @@ ignore = [
 [tool.ruff.lint.isort]
 known-first-party = ["naamkaran"]
 
-[tool.black]
-line-length = 88
-target-version = ['py311']
-
-[tool.isort]
-profile = "black"
-multi_line_output = 3
 
 
 # mypy configuration
