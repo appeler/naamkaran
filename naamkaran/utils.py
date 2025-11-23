@@ -3,15 +3,16 @@ To process arguments from the command line.
 """
 
 import argparse
-from typing import List
 
 
-def get_args(argv: List[str], description: str, epilog: str) -> argparse.Namespace:
+def get_args(
+    argv: list[str], prog: str, description: str, epilog: str
+) -> argparse.Namespace:
     """
     Returns arguments from the command line.
     """
     parser = argparse.ArgumentParser(
-        prog="naamkaran",
+        prog=prog,
         description=description,
         epilog=epilog,
         formatter_class=argparse.ArgumentDefaultsHelpFormatter,

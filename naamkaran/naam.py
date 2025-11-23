@@ -1,12 +1,10 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-from typing import List, Optional
 
 try:
-    from importlib.resources import files
+    from importlib.resources import files as pkg_files
 except ImportError:
-    from importlib_resources import files
+    from importlib_resources import files as pkg_files  # type: ignore[no-redef]
 
 import joblib
 import torch
@@ -22,19 +20,19 @@ class Naamkaran:
     @staticmethod
     def generate(
         start_letter: str,
-        end_letter: Optional[str],
+        end_letter: str | None,
         how_many: int,
         max_length: int,
         gender: str,
         temperature: float,
         model_fn: str,
         vocab_fn: str,
-    ) -> List[str]:
+    ) -> list[str]:
         """
         Generates names for the given dataframe.
         """
-        MODEL = files("naamkaran").joinpath(model_fn)
-        VOCAB = files("naamkaran").joinpath(vocab_fn)
+        MODEL = pkg_files("naamkaran").joinpath(model_fn)
+        VOCAB = pkg_files("naamkaran").joinpath(vocab_fn)
 
         vectorizer = joblib.load(VOCAB)
         vocab = list(vectorizer.get_feature_names_out())
@@ -54,7 +52,9 @@ class Naamkaran:
         model = NameGenerator(
             vocab_size, gender_size, hidden_size, vocab_size, n_layers
         )
-        model.load_state_dict(torch.load(MODEL, map_location=device))
+        model.load_state_dict(
+            torch.load(str(MODEL), map_location=device, weights_only=True)  # nosec B614
+        )
         model.to(device)
 
         # set the model to evaluation mode
@@ -88,7 +88,7 @@ class Naamkaran:
                         input_tensor.unsqueeze(0), gender_tensor, hidden
                     )
                     output_dist = torch.softmax(output[0] / temperature, dim=-1)
-                    top_idx = torch.multinomial(output_dist, 1).item()
+                    top_idx = int(torch.multinomial(output_dist, 1).item())
 
                 # Check if the index is out-of-bounds, which might signal the end
                 if top_idx == oob or top_idx == 0:

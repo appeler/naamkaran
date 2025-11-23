@@ -1,8 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
 import sys
-from typing import List, Optional
 
 from .naam import Naamkaran
 from .utils import get_args
@@ -16,35 +14,36 @@ class GenerateNames(Naamkaran):
     MODEL_FN = "models/naamkaran.pt"
     VOCAB_FN = "models/names_vec.joblib"
 
-    @classmethod
+    @staticmethod
     def generate(
-        cls,
         start_letter: str,
-        end_letter: Optional[str] = None,
+        end_letter: str | None = None,
         how_many: int = 1,
         max_length: int = 5,
         gender: str = "M",
         temperature: float = 0.5,
-    ) -> List[str]:
+        model_fn: str = "",
+        vocab_fn: str = "",
+    ) -> list[str]:
         """
         Generates names for the given dataframe.
         """
-        return super().generate(
+        return Naamkaran.generate(
             start_letter,
             end_letter,
             how_many,
             max_length,
             gender,
             temperature,
-            cls.MODEL_FN,
-            cls.VOCAB_FN,
+            model_fn or GenerateNames.MODEL_FN,
+            vocab_fn or GenerateNames.VOCAB_FN,
         )
 
 
 generate_names = GenerateNames.generate
 
 
-def main() -> List[str]:
+def main() -> list[str]:
     """
     Main method to generates names for the given dataframe.
     """
@@ -70,4 +69,4 @@ def main() -> List[str]:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    main()

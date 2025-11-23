@@ -8,7 +8,7 @@ class NameGenerator(nn.Module):
     """
 
     def __init__(self, input_size, gender_size, hidden_size, output_size, n_layers=1):
-        super(NameGenerator, self).__init__()
+        super().__init__()
         self.hidden_size = hidden_size
         self.n_layers = n_layers
 

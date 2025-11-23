@@ -1,4 +1,4 @@
-from typing import Any, Dict, Tuple, Union
+from typing import Any
 
 from flask import Flask, jsonify, request
 from naamkaran.generate import generate_names
@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 
 @app.route("/generate_names", methods=["POST"])
-def generate_names_api() -> Union[Dict[str, Any], Tuple[Any, int]]:
+def generate_names_api() -> dict[str, Any] | tuple[Any, int]:
     # Get request data as JSON
     data = request.get_json()
 
@@ -56,4 +56,4 @@ def generate_names_api() -> Union[Dict[str, Any], Tuple[Any, int]]:
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

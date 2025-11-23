@@ -1,13 +1,13 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
+requires = ["hatchling>=1.21.1"]
+build-backend = "hatchling.build"
 
 [project]
 name = "naamkaran"
 version = "0.2.0"
 description = "Generative model for names."
 readme = "README.rst"
-license = "MIT"
+license = { text = "MIT" }
 authors = [
     {name = "Rajashekar Chintalapati", email = "rajshekar.ch@gmail.com"},
     {name = "Gaurav Sood", email = "gsood07@gmail.com"},
@@ -33,22 +33,33 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-dev = [
-    "pytest>=7.0.0",
-    "pytest-cov",
-    "black",
-    "isort",
-    "flake8",
-    "mypy",
-    "pre-commit",
-]
-test = [
-    "pytest>=7.0.0",
-    "pytest-cov",
+docs = [
+    "sphinx>=7.0",
+    "furo>=2024.1.29",
+    "sphinx-autodoc-typehints>=1.25",
+    "sphinx-copybutton>=0.5",
+    "myst-parser>=2.0",
 ]
 web = [
     "gradio>=3.0.0",
     "flask>=2.0.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-xdist>=3.0",
+    "ruff>=0.7.0",
+    "mypy>=1.0",
+    "black>=24.0",
+    "isort>=5.0",
+    "pre-commit>=3.0",
+]
+test = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "pytest-xdist>=3.0",
 ]
 
 [project.urls]
@@ -60,11 +71,55 @@ Issues = "https://github.com/appeler/naamkaran/issues"
 [project.scripts]
 generate_names = "naamkaran.generate:main"
 
-[tool.setuptools.packages.find]
-exclude = ["data", "docs", "tests", "scripts", "venv"]
+[tool.hatch.build]
+exclude = [
+    "/.github",
+    "/.venv",
+    "/docs",
+    "/tests",
+    "/.gitignore",
+    "/.pre-commit-config.yaml",
+]
 
-[tool.setuptools.package-data]
-naamkaran = ["models/*.pt", "models/*.joblib"]
+[tool.hatch.build.targets.wheel]
+packages = ["naamkaran"]
+
+# Ruff configuration
+[tool.ruff]
+line-length = 88
+target-version = "py311"
+exclude = [
+    ".git",
+    "__pycache__",
+    "build",
+    "dist",
+    ".venv",
+    "docs",
+    ".eggs",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",  # pycodestyle errors
+    "W",  # pycodestyle warnings
+    "F",  # pyflakes
+    "I",  # isort
+    "B",  # flake8-bugbear
+    "C4", # flake8-comprehensions
+    "UP", # pyupgrade
+]
+ignore = [
+    "E501",  # line too long (handled by formatter)
+    "B008",  # do not perform function calls in argument defaults
+    "C901",  # too complex
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]  # imported but unused
+"tests/*" = ["S101"]  # use of assert
+
+[tool.ruff.lint.isort]
+known-first-party = ["naamkaran"]
 
 [tool.black]
 line-length = 88
@@ -74,17 +129,50 @@ target-version = ['py311']
 profile = "black"
 multi_line_output = 3
 
-[tool.flake8]
-max-line-length = 88
-extend-ignore = ["E203", "W503"]
 
+# mypy configuration
 [tool.mypy]
 python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
-disallow_untyped_defs = true
+check_untyped_defs = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+show_error_codes = true
+
+[[tool.mypy.overrides]]
+module = "tests.*"
+ignore_errors = true
 
 [tool.pytest.ini_options]
-testpaths = ["naamkaran/tests"]
-python_files = ["test_*.py"]
-addopts = "-v --tb=short"
+minversion = "7.0"
+testpaths = ["tests"]
+python_files = "test_*.py"
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--cov=naamkaran",
+    "--cov-report=term-missing",
+    "--cov-report=html",
+    "--cov-report=xml",
+]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+]
+
+# Coverage configuration
+[tool.coverage.run]
+source = ["naamkaran"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+    "if TYPE_CHECKING:",
+]
