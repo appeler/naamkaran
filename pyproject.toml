@@ -59,6 +59,13 @@ test = [
     "pytest-cov>=4.0",
     "pytest-xdist>=3.0",
 ]
+docs = [
+    "sphinx>=7.0",
+    "furo>=2024.1.29",
+    "sphinx-autodoc-typehints>=1.25",
+    "sphinx-copybutton>=0.5",
+    "myst-parser>=2.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/appeler/naamkaran"

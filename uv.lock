@@ -940,6 +940,13 @@ dev = [
     { name = "pytest-xdist" },
     { name = "ruff" },
 ]
+docs = [
+    { name = "furo" },
+    { name = "myst-parser" },
+    { name = "sphinx" },
+    { name = "sphinx-autodoc-typehints" },
+    { name = "sphinx-copybutton" },
+]
 test = [
     { name = "pytest" },
     { name = "pytest-cov" },
@@ -970,6 +977,13 @@ dev = [
     { name = "pytest-cov", specifier = ">=4.0" },
     { name = "pytest-xdist", specifier = ">=3.0" },
     { name = "ruff", specifier = ">=0.7.0" },
+]
+docs = [
+    { name = "furo", specifier = ">=2024.1.29" },
+    { name = "myst-parser", specifier = ">=2.0" },
+    { name = "sphinx", specifier = ">=7.0" },
+    { name = "sphinx-autodoc-typehints", specifier = ">=1.25" },
+    { name = "sphinx-copybutton", specifier = ">=0.5" },
 ]
 test = [
     { name = "pytest", specifier = ">=7.0" },
