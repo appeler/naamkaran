@@ -1,6 +1,6 @@
 [build-system]
-requires = ["hatchling>=1.21.1"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.9.14,<0.10.0"]
+build-backend = "uv_build"
 
 [project]
 name = "naamkaran"
@@ -76,18 +76,9 @@ Issues = "https://github.com/appeler/naamkaran/issues"
 [project.scripts]
 generate_names = "naamkaran.generate:main"
 
-[tool.hatch.build]
-exclude = [
-    "/.github",
-    "/.venv",
-    "/docs",
-    "/tests",
-    "/.gitignore",
-    "/.pre-commit-config.yaml",
-]
-
-[tool.hatch.build.targets.wheel]
-packages = ["naamkaran"]
+[tool.uv.build-backend]
+module-name = "naamkaran"
+module-root = ""
 
 # Ruff configuration
 [tool.ruff]

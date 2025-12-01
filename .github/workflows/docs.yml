@@ -28,7 +28,7 @@ jobs:
           python-version: "3.11"
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v3
+        uses: astral-sh/setup-uv@v7.1.4
         with:
           version: "latest"
 
@@ -38,9 +38,8 @@ jobs:
 
       - name: Build documentation
         run: |
-          cd docs
-          SPHINXBUILD="uv run sphinx-build" make clean
-          SPHINXBUILD="uv run sphinx-build" make html
+          rm -rf docs/build
+          uv run sphinx-build -b html docs/source docs/build/html
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
