@@ -4,7 +4,7 @@
 try:
     from importlib.resources import files as pkg_files
 except ImportError:
-    from importlib_resources import files as pkg_files  # type: ignore[no-redef]
+    from importlib_resources import files as pkg_files
 
 import joblib
 import torch

@@ -36,18 +36,6 @@ jobs:
         uv run ruff check naamkaran/
         uv run ruff format --check naamkaran/
 
-    - name: Type check with mypy
-      run: |
-        uv run mypy naamkaran/ || true  # Allow mypy to fail for now, but show output
-
     - name: Test with pytest
       run: |
-        uv run pytest --cov=naamkaran --cov-report=xml --cov-report=term-missing -v
-
-    - name: Upload coverage reports to Codecov
-      uses: codecov/codecov-action@v5
-      if: matrix.python-version == '3.11'
-      with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
+        uv run pytest --cov=naamkaran --cov-report=term-missing -v

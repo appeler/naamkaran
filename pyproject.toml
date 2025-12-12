@@ -27,22 +27,15 @@ classifiers = [
 requires-python = ">=3.11"
 dependencies = [
     "torch>=2.8.0,<3.0.0",
-    "pandas>=2.2.0",
     "joblib>=1.4.0",
-    "scikit-learn>=1.5.0",
+    "importlib_resources>=6.0.0",
 ]
 
 [project.optional-dependencies]
-docs = [
-    "sphinx>=7.0",
-    "furo>=2024.1.29",
-    "sphinx-autodoc-typehints>=1.25",
-    "sphinx-copybutton>=0.5",
-    "myst-parser>=2.0",
-]
 web = [
     "gradio>=3.0.0",
     "flask>=2.0.0",
+    "requests>=2.25.0",
 ]
 
 [dependency-groups]
@@ -165,3 +158,9 @@ exclude_lines = [
     "if __name__ == .__main__.:",
     "if TYPE_CHECKING:",
 ]
+
+# deptry configuration
+[tool.deptry]
+extend_exclude = ["notebooks", "flask", "docs", "htmlcov"]
+ignore_notebooks = true
+ignore = ["DEP002"]
