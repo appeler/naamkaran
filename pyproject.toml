@@ -40,14 +40,7 @@ web = [
 ]
 
 [dependency-groups]
-dev = [
-    "pytest>=7.0",
-    "pytest-cov>=4.0",
-    "pytest-xdist>=3.0",
-    "ruff>=0.7.0",
-    "mypy>=1.0",
-    "pre-commit>=3.0",
-]
+dev = ["pytest>=7.0", "pytest-cov>=4.0", "pytest-xdist>=3.0", "ruff>=0.7.0", "pre-commit>=3.0", "pyright>=1.1.390", "pydoclint>=0.5"]
 test = [
     "pytest>=7.0",
     "pytest-cov>=4.0",
@@ -59,6 +52,7 @@ docs = [
     "sphinx-autodoc-typehints>=1.25",
     "sphinx-copybutton>=0.5",
     "myst-parser>=2.0",
+    "py-canon @ git+https://github.com/gojiplus/py-canon@v1",
 ]
 
 [project.urls]
@@ -78,55 +72,18 @@ module-root = ""
 [tool.ruff]
 line-length = 88
 target-version = "py311"
-exclude = [
-    ".git",
-    "__pycache__",
-    "build",
-    "dist",
-    ".venv",
-    "docs",
-    ".eggs",
-]
 
 [tool.ruff.lint]
-select = [
-    "E",  # pycodestyle errors
-    "W",  # pycodestyle warnings
-    "F",  # pyflakes
-    "I",  # isort
-    "B",  # flake8-bugbear
-    "C4", # flake8-comprehensions
-    "UP", # pyupgrade
-]
-ignore = [
-    "E501",  # line too long (handled by formatter)
-    "B008",  # do not perform function calls in argument defaults
-    "C901",  # too complex
-]
+external = ["DOC"]
+select = ["E", "W", "F", "I", "B", "C4", "UP", "N", "D", "S", "SIM", "T20", "PT", "RUF"]
+ignore = ["D203", "D213", "B008", "C901", "E501"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
-"__init__.py" = ["F401"]  # imported but unused
-"tests/*" = ["S101"]  # use of assert
-
-[tool.ruff.lint.isort]
-known-first-party = ["naamkaran"]
-
-
-
-# mypy configuration
-[tool.mypy]
-python_version = "3.11"
-warn_return_any = true
-warn_unused_configs = true
-check_untyped_defs = true
-warn_redundant_casts = true
-warn_unused_ignores = true
-warn_no_return = true
-show_error_codes = true
-
-[[tool.mypy.overrides]]
-module = "tests.*"
-ignore_errors = true
+"tests/**" = ["S101", "D"]
+"docs/**" = ["D"]
 
 [tool.pytest.ini_options]
 minversion = "7.0"
@@ -165,3 +122,15 @@ exclude_lines = [
 extend_exclude = ["notebooks", "flask", "docs", "htmlcov"]
 ignore_notebooks = true
 ignore = ["DEP002"]
+
+[tool.pyright]
+include = ["naamkaran"]
+typeCheckingMode = "standard"
+
+[tool.pydoclint]
+style = "google"
+arg-type-hints-in-docstring = false
+check-return-types = false
+check-class-attributes = false
+allow-init-docstring = true
+exclude = '\.venv|tests|docs'
