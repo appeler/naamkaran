@@ -21,3 +21,5 @@ docs/source/_build
 .DS_Store
 Dockerfile
 coverage.xml
+htmlcov/
+.coverage
