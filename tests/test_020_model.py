@@ -35,8 +35,8 @@ class TestNameGenerator(unittest.TestCase):
 
     def test_model_initialization(self) -> None:
         """Test model initializes correctly."""
-        self.assertEqual(self.model.hidden_size, self.hidden_size)
-        self.assertEqual(self.model.n_layers, self.n_layers)
+        assert self.model.hidden_size == self.hidden_size
+        assert self.model.n_layers == self.n_layers
 
     def test_forward_pass(self) -> None:
         """Test forward pass produces correct output shapes."""
@@ -46,10 +46,8 @@ class TestNameGenerator(unittest.TestCase):
 
         output, hidden_out = self.model(input_seq, gender, hidden)
 
-        self.assertEqual(
-            output.shape, (self.batch_size, self.seq_len, self.output_size)
-        )
-        self.assertEqual(len(hidden_out), 2)  # LSTM returns (h_n, c_n)
+        assert output.shape == (self.batch_size, self.seq_len, self.output_size)
+        assert len(hidden_out) == 2  # LSTM returns (h_n, c_n)
 
     def test_init_hidden(self) -> None:
         """Test hidden state initialization."""
@@ -57,8 +55,8 @@ class TestNameGenerator(unittest.TestCase):
         h_0, c_0 = hidden
 
         expected_shape = (self.n_layers, self.batch_size, self.hidden_size)
-        self.assertEqual(h_0.shape, expected_shape)
-        self.assertEqual(c_0.shape, expected_shape)
+        assert h_0.shape == expected_shape
+        assert c_0.shape == expected_shape
 
 
 if __name__ == "__main__":

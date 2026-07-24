@@ -1,12 +1,12 @@
+"""Gradio web demo for interactively generating names."""
+
 import gradio as gr
 
 from naamkaran.generate import generate_names
 
 
 def gen_names(start_letter, end_letter, how_many, max_length, gender, temperature):
-    """
-    Generates names for the given inputs.
-    """
+    """Generates names for the given inputs."""
     if len(end_letter) > 1:
         end_letter = end_letter[0]
     if len(start_letter) > 1:

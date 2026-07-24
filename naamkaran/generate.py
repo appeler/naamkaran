@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Command-line entry point for generating names."""
 
 import sys
 
@@ -7,9 +8,7 @@ from .utils import get_args
 
 
 class GenerateNames(Naamkaran):
-    """
-    Generates names for the given dataframe.
-    """
+    """Generates names for the given dataframe."""
 
     MODEL_FN = "models/naamkaran.pt"
     VOCAB_FN = "models/names_vec.joblib"
@@ -25,9 +24,7 @@ class GenerateNames(Naamkaran):
         model_fn: str = "",
         vocab_fn: str = "",
     ) -> list[str]:
-        """
-        Generates names for the given dataframe.
-        """
+        """Generates names for the given dataframe."""
         return Naamkaran.generate(
             start_letter,
             end_letter,
@@ -44,10 +41,7 @@ generate_names = GenerateNames.generate
 
 
 def main() -> list[str]:
-    """
-    Main method to generates names for the given dataframe.
-    """
-
+    """Main method to generates names for the given dataframe."""
     args = get_args(
         sys.argv[1:],
         "Naamkaran",
@@ -63,8 +57,8 @@ def main() -> list[str]:
         args.temperature,
     )
     if args.debug:
-        print(args)
-        print(names)
+        print(args)  # noqa: T201
+        print(names)  # noqa: T201
     return names
 
 

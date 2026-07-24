@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+"""Core name-generation logic backed by the trained LSTM model."""
 
 try:
     from importlib.resources import files as pkg_files
@@ -13,9 +13,7 @@ from .model import NameGenerator
 
 
 class Naamkaran:
-    """
-    Generates names for the given start_letter, end_letter
-    """
+    """Generates names for the given start_letter, end_letter."""
 
     @staticmethod
     def generate(
@@ -28,13 +26,11 @@ class Naamkaran:
         model_fn: str,
         vocab_fn: str,
     ) -> list[str]:
-        """
-        Generates names for the given dataframe.
-        """
-        MODEL = pkg_files("naamkaran").joinpath(model_fn)
-        VOCAB = pkg_files("naamkaran").joinpath(vocab_fn)
+        """Generates names for the given dataframe."""
+        model_path = pkg_files("naamkaran").joinpath(model_fn)
+        vocab_path = pkg_files("naamkaran").joinpath(vocab_fn)
 
-        vectorizer = joblib.load(VOCAB)
+        vectorizer = joblib.load(vocab_path)
         vocab = list(vectorizer.get_feature_names_out())
         n_letters = len(vocab)
         all_letters = "".join(vocab)
@@ -53,7 +49,7 @@ class Naamkaran:
             vocab_size, gender_size, hidden_size, vocab_size, n_layers
         )
         model.load_state_dict(
-            torch.load(str(MODEL), map_location=device, weights_only=True)  # nosec B614
+            torch.load(str(model_path), map_location=device, weights_only=True)  # nosec B614
         )
         model.to(device)
 
@@ -101,9 +97,8 @@ class Naamkaran:
                 # Update the input tensor for the next iteration
                 input_tensor = torch.tensor([top_idx], dtype=torch.long).to(device)
 
-            if (
-                end_letter is None
-                or generated_name[-1] == end_letter
+            if end_letter is None or (
+                generated_name[-1] == end_letter
                 and generated_name not in generated_names
             ):
                 generated_names.append(generated_name)

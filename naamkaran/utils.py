@@ -1,6 +1,4 @@
-"""
-To process arguments from the command line.
-"""
+"""To process arguments from the command line."""
 
 import argparse
 
@@ -8,9 +6,7 @@ import argparse
 def get_args(
     argv: list[str], prog: str, description: str, epilog: str
 ) -> argparse.Namespace:
-    """
-    Returns arguments from the command line.
-    """
+    """Returns arguments from the command line."""
     parser = argparse.ArgumentParser(
         prog=prog,
         description=description,

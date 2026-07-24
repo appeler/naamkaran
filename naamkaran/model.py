@@ -1,13 +1,14 @@
+"""LSTM-based name generator model."""
+
 import torch
 import torch.nn as nn
 
 
 class NameGenerator(nn.Module):
-    """
-    A class representing the name generator model.
-    """
+    """A class representing the name generator model."""
 
     def __init__(self, input_size, gender_size, hidden_size, output_size, n_layers=1):
+        """Initialize the embeddings, LSTM, and output layer."""
         super().__init__()
         self.hidden_size = hidden_size
         self.n_layers = n_layers
@@ -20,9 +21,7 @@ class NameGenerator(nn.Module):
         self.fc = nn.Linear(hidden_size, output_size)
 
     def forward(self, input_seq, gender, hidden):
-        """
-        Forward pass of the model.
-        """
+        """Forward pass of the model."""
         name_embedded = self.embedding(input_seq)
 
         # Embed the gender and expand its dimensions to match the name_embedded tensor
@@ -36,9 +35,7 @@ class NameGenerator(nn.Module):
         return output, hidden
 
     def init_hidden(self, batch_size, device):
-        """
-        Initialize the hidden state of the LSTM.
-        """
+        """Initialize the hidden state of the LSTM."""
         return (
             torch.zeros(self.n_layers, batch_size, self.hidden_size, device=device),
             torch.zeros(self.n_layers, batch_size, self.hidden_size, device=device),

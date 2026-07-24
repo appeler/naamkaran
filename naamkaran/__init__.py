@@ -1,6 +1,4 @@
-"""
-Naamkaran is a library to generate random names.
-"""
+"""Naamkaran is a library to generate random names."""
 
 from naamkaran.generate import generate_names
 

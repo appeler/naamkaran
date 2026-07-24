@@ -7,7 +7,7 @@ name = "naamkaran"
 version = "0.2.0"
 description = "Generative model for names."
 readme = "README.rst"
-license = { text = "MIT" }
+license = "MIT"
 authors = [
     {name = "Rajashekar Chintalapati", email = "rajshekar.ch@gmail.com"},
     {name = "Gaurav Sood", email = "gsood07@gmail.com"},
@@ -31,6 +31,7 @@ dependencies = [
     "importlib_resources>=6.0.0",
     "scikit-learn>=1.5.0",
 ]
+license-files = ["LICENSE"]
 
 [project.optional-dependencies]
 web = [
@@ -72,6 +73,7 @@ module-root = ""
 [tool.ruff]
 line-length = 88
 target-version = "py311"
+extend-exclude = ["notebooks", "flask"]
 
 [tool.ruff.lint]
 external = ["DOC"]

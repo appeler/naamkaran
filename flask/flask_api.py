@@ -52,7 +52,7 @@ def generate_names_api() -> dict[str, Any] | tuple[Any, int]:
         # Return the generated names as JSON
         return {"names": names}
     except Exception as e:
-        return jsonify({"error": f"Name generation failed: {str(e)}"}), 500
+        return jsonify({"error": f"Name generation failed: {e!s}"}), 500
 
 
 if __name__ == "__main__":

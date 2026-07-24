@@ -60,27 +60,27 @@ autodoc_default_options = {
 }
 
 # Type hints settings
-typehints_defaults = 'comma'
+typehints_defaults = "comma"
 typehints_use_signature = True
 typehints_use_signature_return = True
-autodoc_typehints_description_target = 'documented'
+autodoc_typehints_description_target = "documented"
 
 # Autosummary settings
 autosummary_generate = True
 
 # MyST settings
 myst_enable_extensions = [
-    'colon_fence',
-    'deflist',
-    'dollarmath',
-    'fieldlist',
-    'html_admonition',
-    'html_image',
-    'replacements',
-    'smartquotes',
-    'strikethrough',
-    'substitution',
-    'tasklist',
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
 ]
 
 # Intersphinx mapping

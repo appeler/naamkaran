@@ -37,10 +37,10 @@ class TestGenerateNames(unittest.TestCase):
             self.gender,
             self.temperature,
         )
-        self.assertEqual(len(names), self.how_many)
-        self.assertEqual(names[0][0], self.start_letter)
-        self.assertEqual(names[0][-1], self.end_letter)
-        self.assertEqual(len(names[0]), self.max_length)
+        assert len(names) == self.how_many
+        assert names[0][0] == self.start_letter
+        assert names[0][-1] == self.end_letter
+        assert len(names[0]) == self.max_length
 
 
 if __name__ == "__main__":
