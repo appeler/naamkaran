@@ -8,11 +8,11 @@ Development Setup
 
 1. **Fork and Clone**
 
-   Fork the repository on GitHub and clone your fork:
+   Fork the repository and clone your fork using the GitHub CLI:
 
    .. code-block:: bash
 
-       git clone https://github.com/YOUR_USERNAME/naamkaran.git
+       gh repo fork appeler/naamkaran --clone
        cd naamkaran
 
 2. **Create Virtual Environment**
