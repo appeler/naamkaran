@@ -4,6 +4,9 @@
 !.travis.yml
 !.pep8speaks.yml
 !.github
+!.pre-commit-config.yaml
+!.copier-answers.yml
+!.zizmor.yml
 *.pyc
 *.log
 output.csv
