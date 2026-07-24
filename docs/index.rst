@@ -73,7 +73,6 @@ Table of Contents
    :caption: API Reference:
 
    api/modules
-   api/naamkaran
 
 .. toctree::
    :maxdepth: 1

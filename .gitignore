@@ -16,8 +16,8 @@ venv/
 dist/
 naamkaran.egg-info/
 dev/
-docs/build
-docs/source/_build
+docs/_build
+docs/_site
 .DS_Store
 Dockerfile
 coverage.xml
