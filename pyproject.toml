@@ -1,10 +1,10 @@
 [build-system]
-requires = ["uv_build>=0.9.14,<0.13.0"]
-build-backend = "uv_build"
+requires = ["hatchling", "uv-dynamic-versioning"]
+build-backend = "hatchling.build"
 
 [project]
 name = "naamkaran"
-version = "0.2.0"
+dynamic = ["version"]
 description = "Generative model for names."
 readme = "README.rst"
 license = "MIT"
@@ -27,9 +27,9 @@ classifiers = [
 requires-python = ">=3.11"
 dependencies = [
     "torch>=2.8.0,<3.0.0",
-    "joblib>=1.4.0",
-    "importlib_resources>=6.0.0",
-    "scikit-learn>=1.5.0",
+    "numpy>=1.26.0,<3.0.0",
+    "huggingface-hub>=0.23",
+    "pyarrow>=14.0.0",
 ]
 license-files = ["LICENSE"]
 
@@ -65,9 +65,15 @@ Issues = "https://github.com/appeler/naamkaran/issues"
 [project.scripts]
 generate_names = "naamkaran.generate:main"
 
-[tool.uv.build-backend]
-module-name = "naamkaran"
-module-root = ""
+[tool.hatch.version]
+source = "uv-dynamic-versioning"
+
+[tool.uv-dynamic-versioning]
+vcs = "git"
+style = "pep440"
+
+[tool.hatch.build.targets.wheel]
+packages = ["naamkaran"]
 
 # Ruff configuration
 [tool.ruff]
@@ -100,9 +106,12 @@ addopts = [
     # every run -- local ones included -- for no reader. py-canon's reusable CI
     # puts the table in the GitHub job summary instead.
     "--cov-report=term-missing",
+    "-m",
+    "not live",
 ]
 markers = [
     "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "live: reaches Hugging Face and is deselected by default",
 ]
 
 # Coverage configuration

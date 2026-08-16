@@ -1,14 +1,10 @@
 #!/usr/bin/env python
 """Core name-generation logic backed by the trained LSTM model."""
 
-try:
-    from importlib.resources import files as pkg_files
-except ImportError:
-    from importlib_resources import files as pkg_files
-
-import joblib
+import pyarrow.parquet as pq
 import torch
 
+from ._resources import resolve_model
 from .model import NameGenerator
 
 
@@ -27,11 +23,10 @@ class Naamkaran:
         vocab_fn: str,
     ) -> list[str]:
         """Generates names for the given dataframe."""
-        model_path = pkg_files("naamkaran").joinpath(model_fn)
-        vocab_path = pkg_files("naamkaran").joinpath(vocab_fn)
+        model_path = resolve_model(model_fn.removeprefix("models/"))
+        vocab_path = resolve_model(vocab_fn.removeprefix("models/"))
 
-        vectorizer = joblib.load(vocab_path)
-        vocab = list(vectorizer.get_feature_names_out())
+        vocab = pq.read_table(vocab_path, columns=["token"])["token"].to_pylist()
         n_letters = len(vocab)
         all_letters = "".join(vocab)
         oob = n_letters + 1
@@ -49,7 +44,7 @@ class Naamkaran:
             vocab_size, gender_size, hidden_size, vocab_size, n_layers
         )
         model.load_state_dict(
-            torch.load(str(model_path), map_location=device, weights_only=True)  # nosec B614
+            torch.load(model_path, map_location=device, weights_only=True)  # nosec B614
         )
         model.to(device)
 

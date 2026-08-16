@@ -9,6 +9,8 @@ naamkaran: generative model for names
     :target: https://pepy.tech/project/naamkaran
 .. image:: https://img.shields.io/badge/docs-github.io-blue
     :target: https://appeler.github.io/naamkaran/
+.. image:: https://img.shields.io/badge/%F0%9F%A4%97-models-yellow
+    :target: https://huggingface.co/gojiberries/naamkaran
 
 Naamkaran is a generative model for names. It is based on a character-level RNN trained on names from the Florida Voter Registration Data.
 
@@ -29,7 +31,7 @@ For development with all tools:
 
 .. code-block:: bash
 
-    pip install -e ".[dev,test]"
+    uv sync --all-groups
 
 For web applications (Gradio/Flask):
 
@@ -91,6 +93,11 @@ Data
 
 The model is trained on names from the Florida Voter Registration Data from early 2022.
 The data are available on the `Harvard Dataverse <http://dx.doi.org/10.7910/DVN/UBIG3F>`__
+
+The trained model and vectorizer are published at
+`gojiberries/naamkaran <https://huggingface.co/gojiberries/naamkaran>`__.
+Naamkaran downloads the artifacts from an immutable Hugging Face commit on
+first use. Set ``NAAMKARAN_MODEL_DIR`` to use an explicitly managed local copy.
 
 
 Authors

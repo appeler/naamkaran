@@ -11,7 +11,7 @@ class GenerateNames(Naamkaran):
     """Generates names for the given dataframe."""
 
     MODEL_FN = "models/naamkaran.pt"
-    VOCAB_FN = "models/names_vec.joblib"
+    VOCAB_FN = "models/vocabulary.parquet"
 
     @staticmethod
     def generate(
