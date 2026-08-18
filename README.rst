@@ -9,8 +9,18 @@ naamkaran: generative model for names
     :target: https://pepy.tech/project/naamkaran
 .. image:: https://img.shields.io/badge/docs-github.io-blue
     :target: https://appeler.github.io/naamkaran/
+.. image:: https://img.shields.io/badge/%F0%9F%A4%97-models-yellow
+    :target: https://huggingface.co/gojiberries/naamkaran
 
-Naamkaran is a generative model for names. It is based on a character-level RNN trained on names from the Florida Voter Registration Data.
+Naamkaran is a character-level LSTM that generates synthetic name-like strings.
+It was trained on names from early 2022 Florida voter registration data.
+
+Use the outputs for demonstrations, testing, and exploratory applications. They
+are not verified personal names or representative population samples. The model
+can reproduce spelling patterns, imbalance, errors, and social biases in the
+training data. Its binary gender conditioning does not represent the full range
+of gender identities. Do not use its outputs to infer identity, ethnicity,
+citizenship, eligibility, or another sensitive attribute.
 
 Gradio App.
 ------------
@@ -29,7 +39,7 @@ For development with all tools:
 
 .. code-block:: bash
 
-    pip install -e ".[dev,test]"
+    uv sync --all-groups --all-extras
 
 For web applications (Gradio/Flask):
 
@@ -58,6 +68,7 @@ The general API for naamkaran is as follows:
         max_length  The maximum length of the name (default: 5)
         gender      The gender of the name (default: "M")
         temperature The temperature of the model (default: 0.5)
+        max_attempts Maximum candidates to sample before failing
 
     # generate 10 names starting with 'A'
     generate_names('A', how_many=10)
@@ -91,6 +102,14 @@ Data
 
 The model is trained on names from the Florida Voter Registration Data from early 2022.
 The data are available on the `Harvard Dataverse <http://dx.doi.org/10.7910/DVN/UBIG3F>`__
+
+The trained model and vocabulary are published at
+`gojiberries/naamkaran <https://huggingface.co/gojiberries/naamkaran>`__.
+Naamkaran downloads the artifacts from an immutable Hugging Face commit on
+first use and verifies their SHA-256 hashes against the packaged
+``model_manifest.json``. Set ``NAAMKARAN_MODEL_DIR`` to use an explicitly
+managed local copy. The Hugging Face client honors its standard authentication
+configuration, including ``HF_TOKEN``.
 
 
 Authors

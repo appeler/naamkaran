@@ -1,0 +1,30 @@
+{
+  "artifacts": {
+    "naamkaran.pt": {
+      "format": "pytorch_state_dict",
+      "sha256": "49a8eb556ef189f54fd05358d7c8a53e3a734cbc696aa045473b0d3ad1552868",
+      "size": 532009
+    },
+    "vocabulary.parquet": {
+      "columns": {
+        "token": "string"
+      },
+      "format": "parquet",
+      "rows": 55,
+      "sha256": "9ce06bbf4a9608fc09849c707bb0ca516bbe2ef509cbbb14c86548d26c2c5bd5",
+      "size": 591
+    }
+  },
+  "intended_use": "Generate synthetic name-like strings for testing, demonstrations, and exploratory applications.",
+  "limitations": [
+    "Outputs reflect spelling patterns, imbalance, errors, and social biases in the training data.",
+    "Binary gender conditioning does not represent the full range of gender identities.",
+    "Generated strings are not verified personal names or representative population samples."
+  ],
+  "reference_dataset": {
+    "description": "Early 2022 Florida voter registration names",
+    "url": "https://doi.org/10.7910/DVN/UBIG3F"
+  },
+  "repository": "gojiberries/naamkaran",
+  "revision": "eaf48b954ae49328de09f8dc4984da9e6f113cbf"
+}
