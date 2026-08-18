@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 test_020_model
 Tests for the NameGenerator model

@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
 test_010_gen_names
 """
@@ -40,7 +38,7 @@ class TestGenerateNames(unittest.TestCase):
         assert len(names) == self.how_many
         assert names[0][0] == self.start_letter
         assert names[0][-1] == self.end_letter
-        assert len(names[0]) == self.max_length
+        assert len(names[0]) <= self.max_length
 
 
 if __name__ == "__main__":

@@ -1,10 +1,10 @@
 [build-system]
-requires = ["hatchling", "uv-dynamic-versioning"]
-build-backend = "hatchling.build"
+requires = ["uv_build>=0.12.5,<0.13"]
+build-backend = "uv_build"
 
 [project]
 name = "naamkaran"
-dynamic = ["version"]
+version = "0.3.0"
 description = "Generative model for names."
 readme = "README.rst"
 license = "MIT"
@@ -26,18 +26,18 @@ classifiers = [
 ]
 requires-python = ">=3.11"
 dependencies = [
-    "torch>=2.8.0,<3.0.0",
-    "numpy>=1.26.0,<3.0.0",
-    "huggingface-hub>=0.23",
-    "pyarrow>=14.0.0",
+    "torch>=2.13,<3",
+    "numpy>=2.4,<3",
+    "huggingface-hub>=1.27",
+    "pyarrow>=25",
 ]
 license-files = ["LICENSE"]
 
 [project.optional-dependencies]
 web = [
-    "gradio>=3.0.0",
-    "flask>=2.0.0",
-    "requests>=2.25.0",
+    "gradio>=6.24,<7",
+    "flask>=3.1,<4",
+    "requests>=2.34,<3",
 ]
 
 [dependency-groups]
@@ -65,17 +65,6 @@ Issues = "https://github.com/appeler/naamkaran/issues"
 [project.scripts]
 generate_names = "naamkaran.generate:main"
 
-[tool.hatch.version]
-source = "uv-dynamic-versioning"
-
-[tool.uv-dynamic-versioning]
-vcs = "git"
-style = "pep440"
-
-[tool.hatch.build.targets.wheel]
-packages = ["naamkaran"]
-
-# Ruff configuration
 [tool.ruff]
 line-length = 88
 target-version = "py311"
@@ -83,14 +72,21 @@ extend-exclude = ["notebooks", "flask"]
 
 [tool.ruff.lint]
 external = ["DOC"]
-select = ["E", "W", "F", "I", "B", "C4", "UP", "N", "D", "S", "SIM", "T20", "PT", "RUF"]
-ignore = ["D203", "D213", "B008", "C901", "E501"]
+select = [
+    "E", "W", "F", "I", "B", "C4", "UP", "N", "D", "S", "SIM", "T20", "PT", "RUF",
+    "PTH", "RET", "PIE", "FURB", "PERF", "DTZ", "LOG", "G", "TC", "FLY",
+    "RSE", "SLOT", "FA", "A", "EXE", "ICN", "PGH", "PLE", "ARG", "SLF",
+]
+# D203/D213: the google convention the fleet standard picks. W191/D206/D300:
+# ruff's own docs list these as always incompatible with `ruff format`, which
+# the standard also runs.
+ignore = ["D203", "D213", "W191", "D206", "D300", "B008", "C901", "E501"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S101", "D"]
+"tests/**" = ["S101", "D", "ARG", "SLF"]
 "docs/**" = ["D"]
 
 [tool.pytest.ini_options]
@@ -116,7 +112,7 @@ markers = [
 
 # Coverage configuration
 [tool.coverage.run]
-source = ["naamkaran"]
+source = ["src/naamkaran"]
 branch = true
 
 [tool.coverage.report]
@@ -135,9 +131,10 @@ exclude_lines = [
 extend_exclude = ["notebooks", "flask", "docs", "htmlcov"]
 ignore_notebooks = true
 ignore = ["DEP002"]
+known_first_party = ["naamkaran"]
 
 [tool.pyright]
-include = ["naamkaran"]
+include = ["src"]
 typeCheckingMode = "standard"
 
 [tool.pydoclint]
@@ -147,3 +144,7 @@ check-return-types = false
 check-class-attributes = false
 allow-init-docstring = true
 exclude = '\.venv|tests|docs'
+
+[tool.uv.build-backend]
+module-name = "naamkaran"
+module-root = "src"

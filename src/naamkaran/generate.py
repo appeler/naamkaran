@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Command-line entry point for generating names."""
 
 import sys
@@ -8,7 +7,7 @@ from .utils import get_args
 
 
 class GenerateNames(Naamkaran):
-    """Generates names for the given dataframe."""
+    """Generate synthetic name-like strings from the published model."""
 
     MODEL_FN = "models/naamkaran.pt"
     VOCAB_FN = "models/vocabulary.parquet"
@@ -23,8 +22,9 @@ class GenerateNames(Naamkaran):
         temperature: float = 0.5,
         model_fn: str = "",
         vocab_fn: str = "",
+        max_attempts: int | None = None,
     ) -> list[str]:
-        """Generates names for the given dataframe."""
+        """Generate name-like strings from the published model artifacts."""
         return Naamkaran.generate(
             start_letter,
             end_letter,
@@ -34,18 +34,19 @@ class GenerateNames(Naamkaran):
             temperature,
             model_fn or GenerateNames.MODEL_FN,
             vocab_fn or GenerateNames.VOCAB_FN,
+            max_attempts,
         )
 
 
 generate_names = GenerateNames.generate
 
 
-def main() -> list[str]:
-    """Main method to generates names for the given dataframe."""
+def main(argv: list[str] | None = None) -> int:
+    """Run the command-line interface and print one generated string per line."""
     args = get_args(
-        sys.argv[1:],
+        sys.argv[1:] if argv is None else argv,
         "Naamkaran",
-        "Generate names for the given dataframe.",
+        "Generate synthetic name-like strings from the published model.",
         "Happy naming!",
     )
     names = generate_names(
@@ -55,12 +56,11 @@ def main() -> list[str]:
         args.max_length,
         args.gender,
         args.temperature,
+        max_attempts=args.max_attempts,
     )
-    if args.debug:
-        print(args)  # noqa: T201
-        print(names)  # noqa: T201
-    return names
+    sys.stdout.write("\n".join(names) + "\n")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit(main())

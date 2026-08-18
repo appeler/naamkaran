@@ -55,6 +55,11 @@ def get_args(
         default=0.5,
         help="Temperature for the softmax function.",
     )
+    parser.add_argument(
+        "--max_attempts",
+        type=int,
+        default=None,
+        help="Maximum candidates to sample before failing.",
+    )
 
-    args = parser.parse_args(argv)
-    return args
+    return parser.parse_args(argv)

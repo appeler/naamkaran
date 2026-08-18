@@ -7,16 +7,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Fixed
-
-- Added the missing `scikit-learn` runtime dependency; the shipped vocab
-  pickle requires it to unpickle `CountVectorizer` at load time.
+## [0.3.0] - 2026-08-17
 
 ### Changed
 
-- Adopted the `py-canon` fleet standard: CI, docs, and release workflows
-  now delegate to `gojiplus/py-canon` reusable workflows; added `pyright`
-  and `pydoclint` to the lint/type-check gate.
+- Store model weights and the typed Parquet vocabulary on Hugging Face at an
+  immutable revision instead of shipping weights and a version-sensitive
+  scikit-learn pickle in the wheel.
+- Verify downloaded artifact hashes against a packaged model manifest.
+- Adopt the py-canon project structure, uv_build backend, quality checks, and
+  reusable release workflows.
+- Move the import package to the standard `src` layout.
+- Bound rejection sampling and validate generation controls so impossible
+  requests fail instead of hanging indefinitely.
+
+### Fixed
+
+- Treat both reserved model output indices as stop tokens instead of indexing
+  past the end of the vocabulary.
+- Make the console command print generated strings and exit successfully.
 
 ## [0.2.0]
 
