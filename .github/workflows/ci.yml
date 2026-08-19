@@ -20,3 +20,4 @@ jobs:
     with:
       wheel-import: naamkaran
       coverage-floor: 90
+      run-preen: true
