@@ -139,3 +139,6 @@ exclude = '\.venv|tests|docs'
 [tool.uv.build-backend]
 module-name = "naamkaran"
 module-root = "src"
+
+[tool.codespell]
+builtin = "clear,rare,en-GB_to_en-US"
