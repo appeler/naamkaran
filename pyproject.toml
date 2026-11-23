@@ -17,13 +17,12 @@ classifiers = [
     "Development Status :: 4 - Beta",
     "Intended Audience :: Developers",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Topic :: Scientific/Engineering :: Information Analysis",
     "Topic :: Software Development :: Libraries :: Python Modules",
     "Topic :: Utilities",
 ]
-requires-python = ">=3.12"
+requires-python = ">=3.13"
 dependencies = [
     "torch>=2.13,<3",
     "numpy>=2.4,<3",
@@ -66,7 +65,7 @@ generate_names = "naamkaran.generate:main"
 
 [tool.ruff]
 line-length = 88
-target-version = "py312"
+target-version = "py313"
 extend-exclude = ["notebooks", "flask"]
 
 [tool.ruff.lint]
